@@ -32,7 +32,7 @@ public class Post {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User userId;
+	private User user;
 	
 	@Column(name = "post")
 	private String content;
@@ -69,9 +69,9 @@ public class Post {
 	}
 
 	// 新規投稿
-	public Post(User userId, String content) {
+	public Post(User user, String content) {
 		super();
-		this.userId = userId;
+		this.user = user;
 		this.content = content;
 	}
 
@@ -84,12 +84,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public User getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(User userId) {
-		this.userId = userId;
+	public void setUser(User userId) {
+		this.user = userId;
 	}
 
 	public String getContent() {
