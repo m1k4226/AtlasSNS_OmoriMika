@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登録完了</title>
+</head>
+<body>
+	<div>
+		<div>
+			<h3>
+				<strong>admin</strong>さん
+			</h3>
+			<h4>
+				ようこそ！AtlasSNSへ
+			</h4>
+		</div>
+			
+		<br>
+		<div>
+			<p>ユーザー登録が完了いたしました。</p>
+			<p>早速ログインをしてみましょう！</p>
+			
+			<form th:action="@{/login}" method="get">
+			    <button type="submit">ログイン画面へ</button>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>
