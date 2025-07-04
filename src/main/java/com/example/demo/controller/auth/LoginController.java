@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
+import com.example.demo.model.Account;
 import com.example.demo.repository.UserRepository;
 
 
@@ -18,7 +19,10 @@ import com.example.demo.repository.UserRepository;
 public class LoginController {
 	
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
+	
+	@Autowired
+	private Account account;
 	
 	@GetMapping({"/","/login"})
 	public String index() {
@@ -36,14 +40,20 @@ public class LoginController {
 			return "login";
 		}
 		
-		Optional<User> user = userRepository.findByEmailAndPass(email, password);
+		Optional<User> optionalUser = userRepository.findByEmailAndPass(email, password);
 		
-		if(user.isEmpty() || user == null) {
+		if(optionalUser.isEmpty() || optionalUser == null) {
 			model.addAttribute("error","メールアドレスまたはパスワードが正しくありません");
 			model.addAttribute(email, email);
 			return "login";
 		}
 		
+		User user = optionalUser.get();
+		
+	    account.setId(user.getId());
+	    account.setName(user.getName());
+	    account.setIconImage(user.getIconImage());
+	    
 		return "index";
 	}
 	
