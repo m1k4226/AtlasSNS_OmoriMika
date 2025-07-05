@@ -54,7 +54,7 @@ public class LoginController {
 	    account.setName(user.getName());
 	    account.setIconImage(user.getIconImage());
 	    
-		return "index";
+		return "redirect:/posts/index";
 	}
 	
 }
