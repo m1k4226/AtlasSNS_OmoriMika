@@ -10,6 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -35,6 +37,8 @@ public class Post {
 	private User user;
 	
 	@Column(name = "post")
+	@NotBlank(message = "内容を入力してください")
+	@Size(min = 1, max = 150, message = "150文字以内で入力してください")
 	private String content;
 	
 	@CreationTimestamp
