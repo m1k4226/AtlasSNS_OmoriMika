@@ -11,9 +11,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.example.demo.validation.group.EmailGroup;
+import com.example.demo.validation.group.NotBlankGroup;
+import com.example.demo.validation.group.PatternGroup;
+import com.example.demo.validation.group.SizeGroup;
 
 @Entity
 @Table(name = "users")
@@ -35,14 +44,31 @@ public class User {
 	private Integer id;
 	
 	@Column(name = "username")
+	@NotBlank(message = "ユーザー名は必須です", groups = NotBlankGroup.class)
+	@Size(min = 2, max = 12, message = "2文字以上,12文字以内で入力してください", groups = SizeGroup.class)
 	private String name;
 	
+	@NotBlank(message = "メールアドレスは必須です", groups = NotBlankGroup.class)
+	@Size(min = 5,max = 40,message = "5文字以上,40文字以内で入力してください", groups = SizeGroup.class)
+	@Email(message = "メールアドレスの形式が有効ではありません", groups = EmailGroup.class)
 	private String email;
+	
+	@NotBlank(message = "パスワードは必須です", groups = NotBlankGroup.class)
+	@Size(min = 8, max = 20, message = "8文字以上,20文字以内で入力してください", groups = SizeGroup.class)
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "英数字のみで入力してください", groups = PatternGroup.class)
 	private String password;
+	
+//	@Transient
+//	@NotBlank(message = "パスワード確認は必須です")
+//	@Size(min = 8, max = 20, message = "8文字以上,20文字以内で入力してください")
+//	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "英数字のみで入力してください")
+//	private String passconfirm;
+	
+	@Column(nullable = true)
 	private String bio;
 	
 	@Column(name = "icon_image")
-	private String image;
+	private String iconImage = "/images/icon1.png";
 	
 	@CreationTimestamp
 	@Column(name = "created_at")
@@ -131,12 +157,12 @@ public class User {
 		this.bio = bio;
 	}
 
-	public String getImage() {
-		return image;
+	public String getIconImage() {
+		return iconImage;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setIconImage(String image) {
+		this.iconImage = image;
 	}
 
 	public LocalDateTime getCreatedAt() {

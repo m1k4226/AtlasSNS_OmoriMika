@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+</head>
+<body>
+
+	<p th:if="${error} != null" th:text="${error}" class="valid"></p>
+	<div class="formbox">
+		<p>AtlasSNSへようこそ</p>
+		<form action="/login" method="post">
+			<div>
+				<label>メールアドレス</label><br>
+				<input type="text" name="email" th:value="${email}" class="forminput">
+			</div>
+			<div>
+				<label>パスワード</label><br>
+				<input type="password" name="password" class="forminput">
+			</div>
+			<button class="formbtn">ログイン</button>
+		</form>
+		
+		<br>
+		<a href="/register">新規ユーザーの方はこちら</a>
+	</div>
+
+</body>
+</html>
