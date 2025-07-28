@@ -11,39 +11,44 @@
 	<div>
 		<h3>新規ユーザー登録</h3>
 		
-		<!--objectでuserを定義して、form内容をオブジェクトで扱えるように-->
-		<!--actionは、@{}で囲うこと-->
-		<form th:action="@{/register}" th:object="${user}" method="post">
-			
-			<!--fieldは、Thymeleafが提供するバリデーションエラーチェック用のユーティリティオブジェクト-->
-			<!--または、フォーム入力の値を"モデルの特定フィールドにバインドする"ための属性-->
-			<!--そのため、*{name}で「User オブジェクトの email フィールドと対応する」ことを意味し、name属性も自動生成-->
-			<!--#fields.hasErrorsは、指定フィールドのバリデーションエラーの有無を判定(Entityのバリデーション@)-->
-			<!--errorsは、message属性の内容を持ってくる-->
-			<div>
-				ユーザー名<br>
-				<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="valid"></div>
-				<input type="text" th:field="*{name}">
-			</div>
-			<div>
-				メールアドレス<br>
-				<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="valid"></div>
-				<input type="text" th:field="*{email}">
-			</div>
-			<div>
-				パスワード<br>
-				<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="valid"></div>
-				<input type="password" th:field="*{password}">
-			</div>
-			<div>
-				パスワード確認<br>
-				<input type="password" name="passconfirm">
-			</div>
-			
-			<br><!--submitは、form内容をサーバー(POST)に送る(省略可)-->
-			<button type="submit">新規登録</button>
-			
-		</form>
+		<div class="formbox">
+			<!--objectでuserを定義して、form内容をオブジェクトで扱えるように-->
+			<!--actionは、@{}で囲うこと-->
+			<form th:action="@{/register/complete}" th:object="${user}" method="post">
+				
+				<!--fieldは、Thymeleafが提供するバリデーションエラーチェック用のユーティリティオブジェクト-->
+				<!--または、フォーム入力の値を"モデルの特定フィールドにバインドする"ための属性-->
+				<!--そのため、*{name}で「User オブジェクトの email フィールドと対応する」ことを意味し、name属性も自動生成-->
+				<!--#fields.hasErrorsは、指定フィールドのバリデーションエラーの有無を判定(Entityのバリデーション@)-->
+				<!--errorsは、message属性の内容を持ってくる-->
+				<div>
+					ユーザー名<br>
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="valid"></div>
+					<input type="text" th:field="*{name}" class="forminput">
+				</div>
+				<div>
+					メールアドレス<br>
+					<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="valid"></div>
+					<input type="text" th:field="*{email}" class="forminput">
+				</div>
+				<div>
+					パスワード<br>
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="valid"></div>
+					<input type="password" th:field="*{password}" class="forminput">
+				</div>
+				<div>
+					パスワード確認<br>
+					<input type="password" name="passconfirm" class="forminput">
+				</div>
+				
+				<br><!--submitは、form内容をサーバー(POST)に送る(省略可)-->
+				<button type="submit" class="formbtn">新規登録</button>
+				
+			</form>
+		</div>
+		<div>
+			<a href="/login">ログイン画面へ</a>
+		</div>
 	</div>
 
 </body>

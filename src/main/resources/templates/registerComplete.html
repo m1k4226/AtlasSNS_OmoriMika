@@ -5,10 +5,10 @@
 <title>登録完了</title>
 </head>
 <body>
-	<div>
+	<div class="formbox">
 		<div>
 			<h3>
-				<strong>admin</strong>さん
+				<span th:text="${user.name}">admin</span>さん
 			</h3>
 			<h4>
 				ようこそ！AtlasSNSへ
@@ -16,12 +16,15 @@
 		</div>
 			
 		<br>
+		
 		<div>
 			<p>ユーザー登録が完了いたしました。</p>
 			<p>早速ログインをしてみましょう！</p>
-			
+		</div>
+		
+		<div>
 			<form th:action="@{/login}" method="get">
-			    <button type="submit">ログイン画面へ</button>
+				<button type="submit" class="formbtn">ログイン画面へ</button>
 			</form>
 		</div>
 	</div>
