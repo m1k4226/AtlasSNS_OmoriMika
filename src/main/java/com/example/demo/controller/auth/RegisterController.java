@@ -1,11 +1,13 @@
 package com.example.demo.controller.auth;
 
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
+// 手動に変更したため不要
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.validation.ValidationOrder;
 
 
 
@@ -36,13 +39,18 @@ public class RegisterController {
 	// User user：マッピングされたデータを格納するオブジェクト（登録対象）
 	// BindingResult result：@Valid のバリデーション実行結果を保持するオブジェクトのため、必ず@Validの直後に明記
 	// 　→エラーがあれば、result.hasErrors() で判定
-	@PostMapping("/register")
+	@PostMapping("/register/complete")
 	public String register(
-			@ModelAttribute @Valid User user,
+			@ModelAttribute @Validated(ValidationOrder.class) User user,
 			BindingResult result,
 			@RequestParam String passconfirm,
 			Model model) {
 		
+		// Entityのパリデーション評価(グループ)
+		if (result.hasErrors()) {
+			 model.addAttribute("user", user);
+		        return "register"; 
+		    }
 		
 		// メールアドレスの重複確認
 		// result.rejectValue()は、BindingResult resultにエラーを追加するメソッド
@@ -59,7 +67,7 @@ public class RegisterController {
 		 }
 		 
 		
-		// Entityのパリデーション確認
+		// Entityのパリデーション再評価
 		if (result.hasErrors()) {
 			 model.addAttribute("user", user);
 		        return "register"; 
@@ -69,13 +77,8 @@ public class RegisterController {
 		userRepository.save(user);
 		model.addAttribute("user", user);
 		
-		return "redirect:/register/complete";
-	}
-	
-	// 登録完了画面の表示
-	@GetMapping("/register/complete")
-	public String complete(Model model) {
 		return "registerComplete";
 	}
+	
 
 }

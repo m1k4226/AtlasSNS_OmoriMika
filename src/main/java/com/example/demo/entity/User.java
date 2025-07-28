@@ -19,6 +19,11 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.example.demo.validation.group.EmailGroup;
+import com.example.demo.validation.group.NotBlankGroup;
+import com.example.demo.validation.group.PatternGroup;
+import com.example.demo.validation.group.SizeGroup;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -39,18 +44,18 @@ public class User {
 	private Integer id;
 	
 	@Column(name = "username")
-	@NotBlank(message = "ユーザー名は必須です")
-	@Size(min = 2, max = 12, message = "2文字以上,12文字以内で入力してください")
+	@NotBlank(message = "ユーザー名は必須です", groups = NotBlankGroup.class)
+	@Size(min = 2, max = 12, message = "2文字以上,12文字以内で入力してください", groups = SizeGroup.class)
 	private String name;
 	
-	@NotBlank(message = "メールアドレスは必須です")
-	@Size(min = 5,max = 40,message = "5文字以上,40文字以内で入力してください")
-	@Email(message = "メールアドレスの形式が有効ではありません")
+	@NotBlank(message = "メールアドレスは必須です", groups = NotBlankGroup.class)
+	@Size(min = 5,max = 40,message = "5文字以上,40文字以内で入力してください", groups = SizeGroup.class)
+	@Email(message = "メールアドレスの形式が有効ではありません", groups = EmailGroup.class)
 	private String email;
 	
-	@NotBlank(message = "パスワードは必須です")
-	@Size(min = 8, max = 20, message = "8文字以上,20文字以内で入力してください")
-	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "英数字のみで入力してください")
+	@NotBlank(message = "パスワードは必須です", groups = NotBlankGroup.class)
+	@Size(min = 8, max = 20, message = "8文字以上,20文字以内で入力してください", groups = SizeGroup.class)
+	@Pattern(regexp = "^[a-zA-Z0-9]+$", message = "英数字のみで入力してください", groups = PatternGroup.class)
 	private String password;
 	
 //	@Transient
