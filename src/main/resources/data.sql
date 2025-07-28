@@ -1,7 +1,7 @@
 --初期ユーザー
 INSERT INTO users(username, email, password, bio, icon_image) values
 ('田中太郎','taro@exam.com','taro1234','ゲームが好きです','images/icon1.png'),
-('高橋花子','hana@exam.com','hana1234','限界社畜OL','images/icon2.png'),
+('高橋花子','hana@exam.com','hana5678','限界社畜OL','images/icon2.png'),
 ('鈴木ゆり','yurin@exam.com','yurin123','週末コスプレイヤー','images/icon3.png'),
 ('橋本なお','naon@exam.com','nyaon123','猫吸い仲間募集中','images/icon4.png'),
 ('阿部まお','maon@exam.com','maomao123','旅行大好き','images/icon5.png'),
