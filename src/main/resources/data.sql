@@ -1,15 +1,15 @@
 --初期ユーザー
 INSERT INTO users(username, email, password, bio, icon_image) values
-('田中太郎','taro@exam.com','taro123','ゲームが好きです','images/icon1.png'),
-('高橋花子','hana@exam.com','hana123','限界社畜OL','images/icon2.png'),
-('鈴木ゆり','yurin@exam.com','yuri123','週末コスプレイヤー','images/icon3.png'),
-('橋本なお','naon@exam.com','nao123','猫吸い仲間募集中','images/icon4.png'),
-('阿部まお','maon@exam.com','mao123','旅行大好き','images/icon5.png'),
-('吉田ゆう','yuuu@exam.com','yuu123','趣味はラーメン巡り','images/icon6.png'),
-('川崎さき','saki@exam.com','saki123','古のヲタク','images/icon7.png'),
-('百瀬まな','mana@exam.com','mana123','世界中でダンスしてます','images/icon1.png'),
-('和田こう','kouu@exam.com','koo123','格闘','images/icon2.png'),
-('神田けん','kenn@exam.com','ken123','ゴルフはじめたい','images/icon3.png');
+('田中太郎','taro@exam.com','taro1234','ゲームが好きです','images/icon1.png'),
+('高橋花子','hana@exam.com','hana5678','限界社畜OL','images/icon2.png'),
+('鈴木ゆり','yurin@exam.com','yurin123','週末コスプレイヤー','images/icon3.png'),
+('橋本なお','naon@exam.com','nyaon123','猫吸い仲間募集中','images/icon4.png'),
+('阿部まお','maon@exam.com','maomao123','旅行大好き','images/icon5.png'),
+('吉田ゆう','yuuu@exam.com','yunyun123','趣味はラーメン巡り','images/icon6.png'),
+('川崎さき','saki@exam.com','sakiki123','古のヲタク','images/icon7.png'),
+('百瀬まな','mana@exam.com','manana123','世界中でダンスしてます','images/icon1.png'),
+('和田こう','kouu@exam.com','kookoo123','格闘','images/icon2.png'),
+('神田けん','kenn@exam.com','kenken123','ゴルフはじめたい','images/icon3.png');
 
 --初期投稿
 INSERT INTO posts(user_id, post) values
