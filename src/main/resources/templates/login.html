@@ -6,19 +6,19 @@
 </head>
 <body>
 
-	<p th:if="${error} != null" th:text="${error}" style="color: orangered;"></p>
-	<div>
+	<p th:if="${error} != null" th:text="${error}" class="valid"></p>
+	<div class="formbox">
 		<p>AtlasSNSへようこそ</p>
 		<form action="/login" method="post">
 			<div>
 				<label>メールアドレス</label><br>
-				<input type="text" name="email" th:value="${email}">
+				<input type="text" name="email" th:value="${email}" class="forminput">
 			</div>
 			<div>
 				<label>パスワード</label><br>
-				<input type="password" name="password">
+				<input type="password" name="password" class="forminput">
 			</div>
-			<button>ログイン</button>
+			<button class="formbtn">ログイン</button>
 		</form>
 		
 		<br>
