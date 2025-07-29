@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
@@ -16,6 +17,7 @@ import com.example.demo.repository.UserRepository;
 
 
 @Controller
+@RequestMapping("/auth")
 public class LoginController {
 	
 	@Autowired
@@ -26,7 +28,7 @@ public class LoginController {
 	
 	@GetMapping({"/","/login"})
 	public String index() {
-		return "login";
+		return "auth/login";
 	}
 
 	@PostMapping("/login")
@@ -37,7 +39,7 @@ public class LoginController {
 		
 		if(email.isEmpty() || email == null || password.isEmpty() || password == null) {
 			model.addAttribute("error","メールアドレスとパスワードを入力してください");
-			return "login";
+			return "auth/login";
 		}
 		
 		Optional<User> optionalUser = userRepository.findByEmailAndPass(email, password);
@@ -45,7 +47,7 @@ public class LoginController {
 		if(optionalUser.isEmpty() || optionalUser == null) {
 			model.addAttribute("error","メールアドレスまたはパスワードが正しくありません");
 			model.addAttribute(email, email);
-			return "login";
+			return "auth/login";
 		}
 		
 		User user = optionalUser.get();
