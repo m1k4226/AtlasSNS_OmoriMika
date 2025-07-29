@@ -51,7 +51,7 @@ public class RegisterController {
 		// Entityのパリデーション評価(グループ)
 		if (result.hasErrors()) {
 			 model.addAttribute("user", user);
-		        return "register"; 
+		        return "auth/register"; 
 		    }
 		
 		// メールアドレスの重複確認
@@ -72,7 +72,7 @@ public class RegisterController {
 		// Entityのパリデーション再評価
 		if (result.hasErrors()) {
 			 model.addAttribute("user", user);
-		        return "register"; 
+		        return "auth/register"; 
 		    }
 		 
 		// DBに保存
