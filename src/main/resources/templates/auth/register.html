@@ -14,7 +14,7 @@
 		<div class="formbox">
 			<!--objectでuserを定義して、form内容をオブジェクトで扱えるように-->
 			<!--actionは、@{}で囲うこと-->
-			<form th:action="@{/register/complete}" th:object="${user}" method="post">
+			<form th:action="@{/auth/added}" th:object="${user}" method="post">
 				
 				<!--fieldは、Thymeleafが提供するバリデーションエラーチェック用のユーティリティオブジェクト-->
 				<!--または、フォーム入力の値を"モデルの特定フィールドにバインドする"ための属性-->
@@ -47,7 +47,7 @@
 			</form>
 		</div>
 		<div>
-			<a href="/login">ログイン画面へ</a>
+			<a href="/auth/login">ログイン画面へ</a>
 		</div>
 	</div>
 

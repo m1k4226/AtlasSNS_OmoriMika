@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.User;
@@ -20,6 +21,7 @@ import com.example.demo.validation.ValidationOrder;
 
 
 @Controller
+@RequestMapping("/auth")
 public class RegisterController {
 	
 	@Autowired
@@ -30,7 +32,7 @@ public class RegisterController {
 	@GetMapping("/register")
 	public String index(Model model) {
 		model.addAttribute("user", new User());
-		return "register";
+		return "auth/register";
 	}
 	
 	// 入力内容の確認、完了画面に遷移
@@ -39,7 +41,7 @@ public class RegisterController {
 	// User user：マッピングされたデータを格納するオブジェクト（登録対象）
 	// BindingResult result：@Valid のバリデーション実行結果を保持するオブジェクトのため、必ず@Validの直後に明記
 	// 　→エラーがあれば、result.hasErrors() で判定
-	@PostMapping("/register/complete")
+	@PostMapping("/added")
 	public String register(
 			@ModelAttribute @Validated(ValidationOrder.class) User user,
 			BindingResult result,
@@ -77,7 +79,7 @@ public class RegisterController {
 		userRepository.save(user);
 		model.addAttribute("user", user);
 		
-		return "registerComplete";
+		return "auth/added";
 	}
 	
 
