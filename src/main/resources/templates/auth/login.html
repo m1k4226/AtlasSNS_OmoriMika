@@ -9,7 +9,7 @@
 	<p th:if="${error} != null" th:text="${error}" class="valid"></p>
 	<div class="formbox">
 		<p>AtlasSNSへようこそ</p>
-		<form action="/login" method="post">
+		<form action="/auth/login" method="post">
 			<div>
 				<label>メールアドレス</label><br>
 				<input type="text" name="email" th:value="${email}" class="forminput">
