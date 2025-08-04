@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TOP</title>
+</head>
+<body>
+	<header>
+		<a th:href="@{/users/profile}">プロフィール編集</a>
+	</header>
+
+	<div class="wholeflex">
+		
+		<div class="leftbox">
+			<!--投稿-->
+			<div class="postflex">
+				<form th:action="@{/posts/index}" th:object="${post}" method="post">
+					<div>
+						<img th:src="*{user.iconImage}" alt="アイコン">
+					</div>
+					<div>
+						<div  th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="valid"></div>
+						<textarea th:field="*{content}" placeholder="投稿内容を入力してください"></textarea>
+					</div>
+					<div>
+						<button type="submit">
+							<img src="/images/post.png" alt="送信">
+						</button>
+					</div>
+				</form>
+			</div>
+			<!--投稿一覧の表示-->
+			<div th:if="${postList} != null" th:each="postItem : ${postList}" >
+				<div class="postlistflex">
+					<div>
+						<!--postに直接iconImageがないため、user内の指定が必要-->
+						<img th:src="${postItem.user.iconImage}" alt="アイコン">
+					</div>
+					<div>
+						<p th:text="${postItem.content}"></p>
+					</div>
+					<div>
+						<p th:if="${postItem.updatedAt != null}" th:text="${#temporals.format(postItem.updatedAt, 'yyyy-MM-dd HH:mm')}"></p>
+						<div class="posteditflex" th:if="${postItem.user.id} == ${account.id}">
+							<button>
+								<img src="/images/edit.png" alt="編集">
+							</button>
+							<button>
+								<img src="/images/trash.png" alt="削除">
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="rightflex">
+			多分、検索バーのリンク
+		</div>
+		
+	</div>
+
+</body>
+</html>

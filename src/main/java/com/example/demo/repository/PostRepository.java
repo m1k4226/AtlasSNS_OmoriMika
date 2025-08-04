@@ -14,9 +14,9 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 			+ "FROM posts pt "
 			+ "WHERE pt.user_id = ?1 "
 			+ "OR pt.user_id IN ( "
-				+ "SELECT f.followed_id "
-				+ "FROM follows f "
-				+ "WHERE f.following_id = ?1) "
+			+ "SELECT f.followed_id "
+			+ "FROM follows f "
+			+ "WHERE f.following_id = ?1) "
 			+ "ORDER BY pt.updated_at DESC",nativeQuery = true)
 	List<Post> findByFolloweePosts(Integer userId);
 
