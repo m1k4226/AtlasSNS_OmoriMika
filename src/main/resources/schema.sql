@@ -19,7 +19,7 @@ CREATE TABLE posts(
 	id SERIAL PRIMARY KEY,
 	user_id Integer NOT NULL,
 	CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-	post varchar(400) NOT NULL,
+	content varchar(400) NOT NULL,
 	created_at timestamp NOT NULL DEFAULT current_timestamp,
 	updated_at timestamp NOT NULL DEFAULT current_timestamp
 );

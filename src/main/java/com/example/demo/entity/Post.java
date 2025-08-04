@@ -16,6 +16,9 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.example.demo.validation.group.NotBlankGroup;
+import com.example.demo.validation.group.SizeGroup;
+
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -36,9 +39,9 @@ public class Post {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	@Column(name = "post")
-	@NotBlank(message = "内容を入力してください")
-	@Size(min = 1, max = 150, message = "150文字以内で入力してください")
+	@Column(name = "content")
+	@NotBlank(message = "内容を入力してください", groups = NotBlankGroup.class)
+	@Size(min = 1, max = 150, message = "150文字以内で入力してください", groups = SizeGroup.class)
 	private String content;
 	
 	@CreationTimestamp
