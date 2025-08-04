@@ -1,0 +1,56 @@
+<!-- ヘッダー -->
+<div th:fragment="header">
+	<header>
+		<img src="/images/atlas.png" alt="サイトロゴ">
+		<h1>[[${@account.name}]]　さん</h1>
+		<div th:insert="component :: accordion"></div>
+		<img src="${account.iconImage}" alt="サイトロゴ">
+	</header>
+</div>
+
+<!-- アコーディオン -->
+<nav th:fragment="accordion">
+	<ul>
+		<li><a th:href="@{/post/index}">HOME</a></li>
+		<li><a th:href="@{/users/profile}">プロフィール編集</a></li>
+		<li><a th:href="@{/auth/logout}">ログアウト</a></li>
+	</ul>
+</nav>
+
+<!-- スライドバー -->
+<div th:fragment="sidebar">
+	<div class="sidetop">
+		<div>[[${@account.name}]]さんの</div>
+		<div class="searchflex">
+			<div>
+				<span>フォロー数</span>
+			</div>
+			<div>
+				<span>[[${}]]人</span>
+			</div>
+		</div>
+		<div>
+			<a th:href="@{/follows/{accountId}/followlist(accountId=${@account.id})}">
+				<button type="button" class="bluebtn followbtn">フォローリスト</button>
+			</a>
+		</div>
+		<div class="searchflex">
+			<div>
+				<span>フォロワー数</span>
+			</div>
+			<div>
+				<span>[[${}]]人</span>
+			</div>
+		</div>
+		<div>
+			<a th:href="@{/follows/{accountId}/followerlist(accountId=${@account.id})}">
+				<button type="button" class="bluebtn followbtn">フォロワーリスト</button>
+			</a>
+		</div>
+	</div>
+	<div class="sidebtm">
+			<a th:href="@{/users/search}">
+				<button type="button" class="bluebtn userbtn">ユーザー検索</button>
+			</a>
+	</div>
+</div>
